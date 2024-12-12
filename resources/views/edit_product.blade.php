@@ -1,25 +1,28 @@
 @extends('layouts.master')
 @section('main-content')
     <div class="container">
-        <h1>Add Product Form</h1>
+        <h1>Edit Product Form</h1>
+        {{ $product }}
         <form action="" id="productForm">
             <div class="show-msg"></div>
             @csrf
             <div class="mb-3">
                 <label for="name" class="form-label fw-bold">Product Name</label>
-                <input type="text" class="form-control" name="name" id="name" placeholder="Enter Product Name" />
+                <input type="text" class="form-control" name="name" id="name" value="{{ '$product->name' }}"
+                    placeholder="Enter Product Name" />
             </div>
             <div class="mb-3">
                 <label for="quantity" class="form-label fw-bold">Quantity in stock</label>
-                <input type="number" class="form-control" name="quantity" id="quantity"
+                <input type="number" class="form-control" name="quantity" value="{{ 'product->quantity' }}" id="quantity"
                     placeholder="Enter quantity in stock" />
             </div>
             <div class="mb-3">
                 <label for="price" class="form-label fw-bold">Price per item</label>
-                <input type="number" class="form-control" name="price" id="price" placeholder="Price per item" />
+                <input type="number" class="form-control" name="price" id="price" value="{{ 'product->price' }}"
+                    placeholder="Price per item" />
             </div>
 
-            <button type="submit" id="submitBtn" class="btn btn-primary">Submit</button>
+            <button type="submit" id="submitBtn" class="btn btn-primary">Update</button>
             <a class="btn btn-danger" href="{{ route('product.list') }}">Cancel</a>
         </form>
     </div>

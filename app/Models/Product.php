@@ -14,6 +14,5 @@ class Product extends Model
         'name',
         'quantity',
         'price',
-        'total',
     ];
 }

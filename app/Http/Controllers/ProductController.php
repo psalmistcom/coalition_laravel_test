@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreProductRequest;
-use App\Http\Resources\ProductResource;
+
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\View\View;
 
 class ProductController extends Controller
 {
@@ -17,7 +15,6 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::latest('id')->get();
-        // return view('index', ProductResource::collection($products));
         return view('index', compact('products'));
     }
 
@@ -35,21 +32,17 @@ class ProductController extends Controller
     public function store(Request $request)
     {
 
-        dd($request);
-
         $data = Validator::make($request->all(), [
             'name' => 'required',
-            'price' => 'required|numeric',
             'quantity' => 'required|numeric',
+            'price' => 'required|numeric',
         ]);
 
         if ($data->fails()) {
             return response()->json(['error' => $data->errors()]);
         }
 
-        $data['total'] = $request->price * $request->quantity;
-
-        Product::create($data);
+        Product::create($request->all());
         return response()->json(['success', 'Product Data succesfully submitted']);
     }
 
@@ -66,7 +59,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        return view('edit_product', compact('product'));
     }
 
     /**

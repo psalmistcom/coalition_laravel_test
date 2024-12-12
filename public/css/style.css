@@ -1,0 +1,23 @@
+* {
+    box-sizing: border-box;
+}
+
+h1 {
+    text-align: center;
+    padding: 20px 0;
+}
+
+body {
+    width: 40%;
+    margin: auto;
+}
+
+form {
+    border: 1px solid #beb4b4;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.err-msg {
+    color: red;
+}
