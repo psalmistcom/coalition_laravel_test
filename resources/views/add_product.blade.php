@@ -27,6 +27,7 @@
 @push('js')
     <script>
         $("#productForm").on('submit', function(e) {
+
             e.preventDefault();
 
             // clear the existing messages
@@ -44,10 +45,15 @@
                 dataType: 'json',
                 contentType: false,
                 processData: false,
+                beforeSend: function() {
+                    $('#submitBtn').attr("disabled", "disabled");
+                    $('#productForm').css("opacity", ".5");
+                },
                 success: function(response) {
+                    console.log(response)
                     if (response.error) {
                         //validation fails
-                        // console.log(response.error); 
+                        console.log(response.error);
                         $.each(response.error, function(key, value) {
                             var inputElement = $(document).find('[name="' + key + '"]');
                             inputElement.after('<span class="err-msg">' + value[0] + '</span>');
